@@ -1,4 +1,5 @@
 node {
+  checkout scm
 
   stage('Build') {
   withDockerContainer('python:2-alpine') {
