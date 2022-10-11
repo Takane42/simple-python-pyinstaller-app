@@ -21,7 +21,7 @@ node {
 
   stage('Deploy'){
   checkout scm
-  withDockerContainer(cdrx/pyinstaller-linux:python2){
+  withDockerContainer('cdrx/pyinstaller-linux:python2'){
     sh 'pyinstaller --onefile sources/add2vals.py'
     }
   }
