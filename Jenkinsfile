@@ -20,10 +20,8 @@ node {
 
 
   stage('Deploy'){
-    try{
     'sh scp * jenkins@13.212.229.162:~/python/'
     'sh ssh jenkins@13.212.229.168 "docker run -it -v "$(pwd):/src/" -w /src cdrx/pyinstaller-linux:python2 "python -m py_compile sources/add2vals.py sources/calc.py && pyinstaller --onefile sources/add2vals.py""'
-    }
     }
   }
 
