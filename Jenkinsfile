@@ -24,9 +24,9 @@ node {
     }
   }
 
-#  stage('Deploy'){
-#    sh 'scp -r * jenkins@13.212.229.162:./python'
-#    sh 'ssh jenkins@13.212.229.162 "ls ./python"'
-#    }
+//  stage('Deploy'){
+//    sh 'scp -r * jenkins@13.212.229.162:./python'
+//    sh 'ssh jenkins@13.212.229.162 "ls ./python"'
+//    }
 }
 
