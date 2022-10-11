@@ -18,9 +18,6 @@ node {
     }
   }
 
-  stage('Manual Approval'){
-  input "Lanjutkan ke tahap Deploy?"
-  }
 
   stage('Deploy'){
     'sh scp * jenkins@13.212.229.162:~/python/'
