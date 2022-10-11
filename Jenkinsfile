@@ -34,8 +34,5 @@ node {
   withDockerContainer('cdrx/pyinstaller-linux:python2'){
     sh 'pyinstaller --onefile sources/add2vals.py'
   }
-        sshPut remote: remote, from: 'dist/add2vals', into: '.'
-        sshCommand remote: remote, command: './add2vals 2 5 ; sleep 60'
-    }
   }
 }
