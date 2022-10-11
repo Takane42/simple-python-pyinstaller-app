@@ -21,6 +21,5 @@ node {
   stage('Deploy'){
     sh 'ssh jenkins@13.212.229.162 "ls"'
     }
-  }
 }
 
