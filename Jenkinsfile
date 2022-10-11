@@ -1,11 +1,3 @@
-def remote = [:]
-remote.name = "serverProd"
-remote.host = "13.229.120.216"
-remote.allowAnyHosts = true
-withCredentials([sshUserPrivateKey(credentialsId: 'sshAWS', keyFileVariable: '', passphraseVariable: 'password', usernameVariable: 'userName')]) {
-  remote.user = userName
-  remote.password = password
-}
 
 node {
   checkout scm
