@@ -19,7 +19,8 @@ node {
   }
 
   stage('Deploy'){
-    sh 'ssh jenkins@13.212.229.162 "ls"'
+    sh 'scp -r * jenkins@13.212.229.162:./python'
+    sh 'ssh jenkins@13.212.229.162 "ls ./python"'
     }
 }
 
