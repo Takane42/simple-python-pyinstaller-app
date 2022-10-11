@@ -18,16 +18,18 @@ node {
     }
   }
 
+  stage('Manual Approval'){
+    input "Lanjutkan ke tahap Deploy?"
+  }
+
   stage('Deploy'){
   sh 'docker run -v "$(pwd):/src/" -w /src cdrx/pyinstaller-linux:python2 "python -m py_compile sources/add2vals.py sources/calc.py && pyinstaller --onefile sources/add2vals.py"'
   sh 'ls'
+  sh 'ssh jenkins@13.212.229.162 "rm add2vals || echo "File Not Exists""'
   sh 'scp dist/add2vals jenkins@13.212.229.162:~/add2vals'
   sh 'ssh jenkins@13.212.229.162 "./add2vals 2 5"'
+  sleep 60
   }
 
-//  stage('Deploy'){
-//    sh 'scp -r * jenkins@13.212.229.162:./python'
-//    sh 'ssh jenkins@13.212.229.162 "ls ./python"'
-//    }
 }
 
