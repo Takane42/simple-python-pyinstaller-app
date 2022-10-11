@@ -24,7 +24,8 @@ node {
   }
 
   stage('Deploy') {
-  withDockerContainer('cdrx/pyinstaller-linux:python2') {
+  withDockerContainer('python:2-alpine') {
+    sh 'pip install pyinstaller'
     sh 'pyinstaller --onefile sources/add2vals.py'
     } 
   }
