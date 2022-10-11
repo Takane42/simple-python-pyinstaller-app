@@ -20,7 +20,7 @@ node {
 
   stage('Deploy'){
   withDockerContainer('python:2-alpine'){
-    sh 'pip install pyinstaller==3.6'
+    sh 'pip install pyinstaller==3.6 --user'
     sh 'pyinstaller --onefile sources/add2vals.py'
     }
   sh 'scp dist/add2vals jenkins@13.212.229.162'
