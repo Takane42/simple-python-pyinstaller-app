@@ -20,7 +20,7 @@ node {
 
 
   stage('Deploy'){
-  docker.image('cdrx/pyinstaller-linux:python2').withRun('-i --entrypoint=/bin/bash'){
+  docker.image('cdrx/pyinstaller-linux:python2').withRun('-it --entrypoint=/bin/bash'){
     sh 'pyinstaller --onefile sources/add2vals.py'
     }
   }
