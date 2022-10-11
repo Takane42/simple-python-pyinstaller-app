@@ -1,3 +1,7 @@
+def remote = [:]
+remote.name = "serverProd"
+remote.host = "13.212.229.162"
+remote.allowAnyHosts = true
 
 node {
   checkout scm
@@ -21,6 +25,15 @@ node {
 
   stage('Manual Approval'){
   input "Lanjutkan ke tahap Deploy?"
+  }
+
+  withCredentials([sshUserPrivateKey(credentialsId: 'sshAWS', keyFileVariable: '', passphraseVariable: 'password', usernameVariable: 'userName')]) {
+  remote.user = userName
+  remote.password = password
+  stage('Deploy'){
+        sshPut remote: remote, from: '*', into: '.'
+        sshCommand remote: remote, command: 'ls'
+    }
   }
 
 }
