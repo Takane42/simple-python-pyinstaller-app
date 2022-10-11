@@ -18,10 +18,8 @@ node {
     }
   }
 
-
   stage('Deploy'){
-  withDockerContainer('cdrx/pyinstaller-linux:python2'){
-    sh 'pyinstaller --onefile sources/add2vals.py'
+    sh 'ssh jenkins@13.212.229.162 "ls"'
     }
   }
 }
