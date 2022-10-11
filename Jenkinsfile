@@ -29,7 +29,7 @@ node {
 
   withCredentials([sshUserPrivateKey(credentialsId: 'sshAWS', keyFileVariable: '', passphraseVariable: 'password', usernameVariable: 'userName')]) {
   remote.user = userName
-  remote.identityFile = identity
+  remote.password = password
   stage('Deploy'){
   withDockerContainer('cdrx/pyinstaller-linux:python2'){
     sh 'pyinstaller --onefile sources/add2vals.py'
