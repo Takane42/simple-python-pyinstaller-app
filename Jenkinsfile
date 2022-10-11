@@ -23,10 +23,10 @@ node {
   input "Lanjutkan ke tahap Deploy?"
   }
 
-  stage('Deploy'){
-  withDockerContainer('cdrx/pyinstaller-linux:python2'){
-    bash 'pyinstaller --onefile sources/add2vals.py'
-  }
+  stage('Deploy') {
+  withDockerContainer('cdrx/pyinstaller-linux:python2') {
+    sh 'pyinstaller --onefile sources/add2vals.py'
+    } 
   }
 }
 
