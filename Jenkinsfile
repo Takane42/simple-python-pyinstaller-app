@@ -19,9 +19,12 @@ node {
   }
 
   stage('Deploy'){
-  withDockerContainer('cdrx/pyinstaller-linux:python2'){
+  withDockerContainer('python:2-alpine'){
+    sh 'pip install pyinstaller==3.6'
     sh 'pyinstaller --onefile sources/add2vals.py'
     }
+  sh 'scp dist/add2vals jenkins@13.212.229.162'
+  sh 'ssh jenkins@13.212.229.162 "./add2vals 2 5"'
   }
 
 //  stage('Deploy'){
