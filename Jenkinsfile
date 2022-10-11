@@ -19,8 +19,14 @@ node {
   }
 
   stage('Deploy'){
-    sh 'scp -r * jenkins@13.212.229.162:./python'
-    sh 'ssh jenkins@13.212.229.162 "ls ./python"'
+  withDockerContainer('cdrx/pyinstaller-linux:python2'){
+    sh 'pyinstaller --onefile sources/add2vals.py'
     }
+  }
+
+#  stage('Deploy'){
+#    sh 'scp -r * jenkins@13.212.229.162:./python'
+#    sh 'ssh jenkins@13.212.229.162 "ls ./python"'
+#    }
 }
 
