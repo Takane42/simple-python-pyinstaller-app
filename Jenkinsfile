@@ -1,3 +1,8 @@
+def remote = [:]
+remote.name = "serverProd"
+remote.host = "13.229.120.216"
+remote.allowAnyHosts = true
+
 node {
   checkout scm
 
@@ -15,6 +20,22 @@ node {
       }
   finally {
     junit 'test-reports/results.xml'
+    }
+  }
+
+  stage('Manual Approval'){
+  input "Lanjutkan ke tahap Deploy?"
+  }
+
+  withCredentials([sshUserPrivateKey(credentialsId: 'sshAWS', keyFileVariable: '', passphraseVariable: 'password', usernameVariable: 'userName')]) {
+  remote.user = userName
+  remote.identityFile = identity
+  stage('Deploy'){
+  withDockerContainer('cdrx/pyinstaller-linux:python2'){
+    sh 'pyinstaller --onefile sources/add2vals.py'
+  }
+        sshPut remote: remote, from: 'dist/add2vals', into: '.'
+        sshCommand remote: remote, command: './add2vals 2 5 ; sleep 60'
     }
   }
 }
